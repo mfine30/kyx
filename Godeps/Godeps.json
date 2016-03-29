@@ -1,0 +1,11 @@
+{
+	"ImportPath": "github.com/mfine30/kyx",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v60",
+	"Deps": [
+		{
+			"ImportPath": "github.com/strava/go.strava",
+			"Rev": "f5c7cee1038b80d25e3d262208d295c10ca2ac4b"
+		}
+	]
+}
