@@ -24,7 +24,7 @@ func main() {
 	strava.ClientSecret = os.Getenv("STRAVA_CLIENT_SECRET")
 
 	authenticator = &strava.OAuthAuthenticator{
-		CallbackURL:            fmt.Sprintf("http://localhost:%s/exchange_token", port),
+		CallbackURL:            "http://kyx.cfapps.io/exchange_token",
 		RequestClientGenerator: nil,
 	}
 	// client := strava.NewClient(accessToken)
