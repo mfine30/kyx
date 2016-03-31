@@ -2,10 +2,21 @@
 	"ImportPath": "github.com/mfine30/kyx",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v60",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
+		{
+			"ImportPath": "github.com/bmizerany/pat",
+			"Rev": "c068ca2f0aacee5ac3681d68e4d0a003b7d1fd2c"
+		},
 		{
 			"ImportPath": "github.com/strava/go.strava",
 			"Rev": "f5c7cee1038b80d25e3d262208d295c10ca2ac4b"
+		},
+		{
+			"ImportPath": "github.com/tedsuo/rata",
+			"Rev": "b15ebd8bd97ae9202eb00c076d59b2f2824bce37"
 		}
 	]
 }
