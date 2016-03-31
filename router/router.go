@@ -3,6 +3,7 @@ package router
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"net/http"
 
 	"github.com/strava/go.strava"
@@ -35,12 +36,20 @@ func NewRouter(authenticator *strava.OAuthAuthenticator) (http.Handler, error) {
 	return router, nil
 }
 
+type index struct {
+	OauthURL string
+}
+
 func newIndexHandler(authenticator *strava.OAuthAuthenticator) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// you should make this a template in your real application
-		fmt.Fprintf(w, `<a href="%s">`, authenticator.AuthorizationURL("state1", strava.Permissions.Public, true))
-		fmt.Fprint(w, `<img src="http://strava.github.io/api/images/ConnectWithStrava.png" />`)
-		fmt.Fprint(w, `</a>`)
+		i := index{
+			OauthURL: authenticator.AuthorizationURL("index", strava.Permissions.Public, true),
+		}
+		t, err := template.ParseFiles("view/index.html")
+		if err != nil {
+			panic(err)
+		}
+		t.Execute(w, i)
 	})
 }
 
