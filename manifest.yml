@@ -1,3 +1,4 @@
 ---
 applications:
 - name: kyx
+  buildpack_name: go_buildpack
