@@ -13,6 +13,7 @@ import (
 var authenticator *strava.OAuthAuthenticator
 
 func main() {
+	host := os.Getenv("KYX_HOST")
 	port := os.Getenv("PORT")
 
 	// accessToken := os.Getenv("STRAVA_ACCESS_TOKEN")
@@ -24,7 +25,7 @@ func main() {
 	strava.ClientSecret = os.Getenv("STRAVA_CLIENT_SECRET")
 
 	authenticator = &strava.OAuthAuthenticator{
-		CallbackURL:            "http://kyx.cfapps.io/exchange_token",
+		CallbackURL:            fmt.Sprintf("http://%s/exchange_token", host),
 		RequestClientGenerator: nil,
 	}
 	// client := strava.NewClient(accessToken)
@@ -40,7 +41,7 @@ func main() {
 	http.HandleFunc(path, authenticator.HandlerFunc(oAuthSuccess, oAuthFailure))
 
 	// start the server
-	fmt.Printf("Visit http://kyx.cfapps.io:%s/ to view the demo\n", port)
+	fmt.Printf("Visit http://%s:%s/ to view the demo\n", host, port)
 	fmt.Printf("ctrl-c to exit")
 	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 
